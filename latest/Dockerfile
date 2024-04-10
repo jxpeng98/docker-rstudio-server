@@ -21,7 +21,7 @@ RUN set -eo pipefail \
       && curl -SL https://s3.amazonaws.com/rstudio-server/current.ver \
         | sed -e 's/+/-/; s/\.[a-z]\+[0-9]\+$//;' \
         | xargs -I{} curl -SL -o /tmp/rstudio-server.deb \
-          https://download2.rstudio.org/server/focal/amd64/rstudio-server-{}-amd64.deb \
+          https://download2.rstudio.org/server/jammy/amd64/rstudio-server-{}-amd64.deb \
       && gdebi --non-interactive /tmp/rstudio-server.deb \
       && rm -rf /tmp/rstudio-server.deb
 
