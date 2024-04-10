@@ -18,10 +18,7 @@ RUN set -e \
       && rm -rf /var/lib/apt/lists/*
 
 RUN set -eo pipefail \
-      && curl -SL https://s3.amazonaws.com/rstudio-server/current.ver \
-        | sed -e 's/+/-/; s/\.[a-z]\+[0-9]\+$//;' \
-        | xargs -I{} curl -SL -o /tmp/rstudio-server.deb \
-          https://download2.rstudio.org/server/jammy/amd64/rstudio-server-{}-amd64.deb \
+      && wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb -O /tmp/rstudio-server.deb\
       && gdebi --non-interactive /tmp/rstudio-server.deb \
       && rm -rf /tmp/rstudio-server.deb
 
