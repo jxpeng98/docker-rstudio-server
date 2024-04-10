@@ -11,7 +11,7 @@ RUN set -e \
       && apt-get -y dist-upgrade \
       && apt-get -y install --no-install-recommends --no-install-suggests \
         apt-transport-https apt-utils ca-certificates curl gdebi-core \
-        libapparmor1 libclang-dev libedit2 libpq5 libssl1.1 lsb-release \
+        libapparmor1 libclang-dev wget libedit2 libpq5 libssl1.1 lsb-release \
         psmisc r-base sudo \
       && apt-get -y autoremove \
       && apt-get clean \

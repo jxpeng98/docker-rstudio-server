@@ -6,7 +6,7 @@ RUN set -e \
       && apt-get -y update \
       && apt-get -y dist-upgrade \
       && apt-get -y install --no-install-recommends --no-install-suggests \
-        gdebi-core libapparmor1 libclang-dev libssl1.1 lsb-release psmisc \
+        gdebi-core wget libapparmor1 libclang-dev libssl1.1 lsb-release psmisc \
         r-base sudo
 
 RUN set -e \
