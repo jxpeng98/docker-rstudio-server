@@ -1,24 +1,27 @@
-FROM ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV CRAN_URL https://cloud.r-project.org/
+RUN dpkg --add-architecture amd64 && apt-get update
 
 RUN set -e \
       && ln -sf bash /bin/sh
+
 
 RUN set -e \
       && apt-get -y update \
       && apt-get -y dist-upgrade \
       && apt-get -y install --no-install-recommends --no-install-suggests \
         apt-transport-https apt-utils ca-certificates curl gdebi-core \
-        libapparmor1 libclang-dev wget libedit2 libpq5 libssl1.1 lsb-release \
+        libapparmor1 libclang-dev wget libedit2 libpq5 lsb-release \
         psmisc r-base sudo \
       && apt-get -y autoremove \
       && apt-get clean \
       && rm -rf /var/lib/apt/lists/*
 
 RUN set -eo pipefail \
-      && wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb -O /tmp/rstudio-server.deb\
+      && curl -SL -o /tmp/rstudio-server.deb \
+          https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb \
       && gdebi --non-interactive /tmp/rstudio-server.deb \
       && rm -rf /tmp/rstudio-server.deb
 

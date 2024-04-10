@@ -21,7 +21,11 @@ jobs:
         env:
           REPOSITORY: ${{ github.actor }}/rstudio-server
         run: |
-          for t in 'latest' 'slim'; do
+          for t in 'latest'; do
             docker image build -t "${REPOSITORY}:${t}" "${t}" \
               && docker image push "${REPOSITORY}:${t}"
           done
+        # for t in 'latest' 'slim'; do
+        #   docker image build -t "${REPOSITORY}:${t}" "${t}" \
+        #     && docker image push "${REPOSITORY}:${t}"
+        # done

@@ -18,7 +18,8 @@ RUN set -e \
       && rm -rf /var/lib/apt/lists/*
 
 RUN set -eo pipefail \
-      && wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb -O /tmp/rstudio-server.deb\
+      && curl -SL -o /tmp/rstudio-server.deb \
+          https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb \
       && gdebi --non-interactive /tmp/rstudio-server.deb \
       && rm -rf /tmp/rstudio-server.deb
 
